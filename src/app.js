@@ -5,6 +5,9 @@ const helmet = require('helmet');
 const cors = require('cors');
 const logger = require('./logger');
 
+const jwt = require('express-jwt');
+const jwksRsa = require('jwks-rsa');
+
 const feathers = require('@feathersjs/feathers');
 const configuration = require('@feathersjs/configuration');
 const express = require('@feathersjs/express');
@@ -31,6 +34,28 @@ app.use(express.urlencoded({ extended: true }));
 app.use(favicon(path.join(app.get('public'), 'favicon.ico')));
 // Host the public folder
 app.use('/', express.static(app.get('public')));
+
+app.use(
+  jwt({
+    // Dynamically provide a signing key
+    // based on the kid in the header and
+    // the signing keys provided by the JWKS endpoint.
+    secret: jwksRsa.expressJwtSecret({
+      cache: true,
+      rateLimit: true,
+      jwksRequestsPerMinute: 5,
+      jwksUri: 'https://scoredy.auth0.com/.well-known/jwks.json'
+    }),
+
+    // Validate the audience and the issuer.
+    // audience: 'https://api.scoredy.com/',
+    issuer: 'https://scoredy.auth0.com/',
+    algorithms: ['RS256']
+  }).unless({method: ['GET']})
+);
+app.get('/', (req, res, next) => {
+  next();
+});
 
 // Set up Plugins and providers
 app.configure(express.rest());

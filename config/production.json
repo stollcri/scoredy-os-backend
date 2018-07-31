@@ -1,4 +1,5 @@
 {
-  "host": "scoredy-backend-app.feathersjs.com",
-  "port": "PORT"
+  "host": "api.scoredy.com",
+  "port": "PORT",
+  "mongodb": "MONGODB_URI"
 }
