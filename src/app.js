@@ -53,9 +53,6 @@ app.use(
     algorithms: ['RS256']
   }).unless({method: ['GET']})
 );
-app.get('/', (req, res, next) => {
-  next();
-});
 
 // Set up Plugins and providers
 app.configure(express.rest());
