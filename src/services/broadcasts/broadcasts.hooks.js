@@ -5,7 +5,9 @@ module.exports = {
     all: [],
     find: [],
     get: [],
-    create: [],
+    create: [(context) => {
+      context.data.created_by = context.params.userId;
+    }],
     update: [],
     patch: [],
     remove: []
