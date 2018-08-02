@@ -51,7 +51,19 @@ app.use(
     audience: 'https://api.scoredy.com/',
     issuer: 'https://scoredy.auth0.com/',
     algorithms: ['RS256']
-  }).unless({method: ['GET']})
+  }).unless({
+    custom: (req) => {
+      // Don't require the user be logged in if they just want to
+      // get scores, but if they are attempting to find scores
+      // (using a query) then require that they are logged in.
+      // This allows us to add a hook to the find which restricts
+      // the find to the current user's records (we need user id).
+      if (req.method === 'GET' && req.url !== '/broadcasts/?') {
+        return true;
+      }
+      return false;
+    }
+  })
 );
 
 // Set up Plugins and providers

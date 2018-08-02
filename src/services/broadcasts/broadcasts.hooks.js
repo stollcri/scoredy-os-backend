@@ -1,9 +1,15 @@
 
+// MAGIC Alert
+//
+// Attempting a find (hitting '/broadcasts/?') will
+// always only return the current user's records
 
 module.exports = {
   before: {
     all: [],
-    find: [],
+    find: [(context) => {
+      context.params.query = { "created_by": context.params.userId }
+    }],
     get: [],
     create: [(context) => {
       context.data.created_by = context.params.userId;

@@ -2,8 +2,12 @@
 module.exports = function (app) {
   // Add your custom middleware here. Remember that
   // in Express, the order matters.
+
+  // Grab the user id if it is available
   app.use(function(req, res, next) {
-    req.feathers.userId = req.user.sub;
+    if (req && req.user) {
+      req.feathers.userId = req.user.sub;
+    }
     next();
   });
 };
