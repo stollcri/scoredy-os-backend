@@ -48,7 +48,7 @@ app.use(
     }),
 
     // Validate the audience and the issuer.
-    // audience: 'https://api.scoredy.com/',
+    audience: 'https://api.scoredy.com/',
     issuer: 'https://scoredy.auth0.com/',
     algorithms: ['RS256']
   }).unless({method: ['GET']})
