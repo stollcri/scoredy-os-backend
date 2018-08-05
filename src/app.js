@@ -11,8 +11,8 @@ const jwksRsa = require('jwks-rsa');
 const feathers = require('@feathersjs/feathers');
 const configuration = require('@feathersjs/configuration');
 const express = require('@feathersjs/express');
-const socketio = require('@feathersjs/socketio');
 
+const primus = require('@feathersjs/primus');
 
 const middleware = require('./middleware');
 const services = require('./services');
@@ -68,7 +68,8 @@ app.use(
 
 // Set up Plugins and providers
 app.configure(express.rest());
-app.configure(socketio());
+
+app.configure(primus({ transformer: 'websockets' }));
 
 app.configure(mongodb);
 
