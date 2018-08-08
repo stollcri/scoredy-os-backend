@@ -59,7 +59,7 @@ app.use(
       // This allows us to add a hook to the find which restricts
       // the find to the current user's records (we need user id).
       console.log(`app.js -- ${req.method} -- ${req.url}`);
-      if (req.method === 'GET' && req.url !== '/broadcasts/?') {
+      if (req.method === 'GET' && req.url !== '/broadcasts/?q=my') {
         return true;
       }
       return false;
