@@ -1,7 +1,7 @@
 
 // MAGIC Alert
 //
-// Attempting a find (hitting '/broadcasts/?') will
+// Attempting a find (hitting '/broadcasts/?q=my') will
 // always only return the current user's records
 
 module.exports = {
@@ -9,7 +9,7 @@ module.exports = {
     all: [],
     find: [(context) => {
       context.params.query = { "created_by": context.params.userId }
-      console.log(`broadcasts/broadcasts.hooks.js -- ${context.params.userId}`);
+      // console.log(`broadcasts/broadcasts.hooks.js -- ${context.params.userId}`);
     }],
     get: [],
     create: [(context) => {

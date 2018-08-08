@@ -7,7 +7,7 @@ module.exports = function (app) {
   app.use(function(req, res, next) {
     if (req && req.user) {
       req.feathers.userId = req.user.sub;
-      console.log(`middleware/index.js -- ${req.feathers.userId}`);
+      // console.log(`middleware/index.js -- ${req.feathers.userId}`);
     }
     next();
   });

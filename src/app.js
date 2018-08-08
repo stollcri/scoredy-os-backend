@@ -58,7 +58,7 @@ app.use(
       // (using a query) then require that they are logged in.
       // This allows us to add a hook to the find which restricts
       // the find to the current user's records (we need user id).
-      console.log(`app.js -- ${req.method} -- ${req.url}`);
+      // console.log(`app.js -- ${req.method} -- ${req.url}`);
       if (req.method === 'GET' && req.url !== '/broadcasts/?q=my') {
         return true;
       }
