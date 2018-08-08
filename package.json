@@ -1,7 +1,7 @@
 {
   "name": "scoredy-backend",
   "description": "API backend for the Scoredy app",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "homepage": "",
   "main": "src",
   "keywords": [
