@@ -9,6 +9,7 @@ module.exports = {
     all: [],
     find: [(context) => {
       context.params.query = { "created_by": context.params.userId }
+      console.log(`broadcasts/broadcasts.hooks.js -- ${context.params.userId}`);
     }],
     get: [],
     create: [(context) => {
